@@ -1,8 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import DriveFolder from '../components/DriveFolder.astro';
 import { site } from '../config';
 ---
 <Base title="Resources">
   <h1>Resources</h1>
   <p>Forms, guides, and helpful links for customers.</p>
+  <h2>Notices</h2>
+  <DriveFolder folderId={site.driveFolders.notices} title="Public Notices" />
 </Base>
