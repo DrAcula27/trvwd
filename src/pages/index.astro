@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import MeetingCard from '../components/MeetingCard.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../config';
+
+const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+---
+<Base>
+  <h1>{site.name}</h1>
+  <p>{site.tagline}</p>
+  <MeetingCard />
+
+  <div class="grid">
+    <div class="card">
+      <h2>Report a problem</h2>
+      <p>Office: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
+      <p>After-hours emergencies: <a href={`tel:${site.emergencyPhone}`}>{site.emergencyPhone}</a></p>
+    </div>
+    <div class="card">
+      <h2>Public records</h2>
+      <p><a href="/meetings">Minutes and resolutions</a> and <a href="/reports">reports</a>.</p>
+    </div>
+  </div>
+
+  <h2>Latest news</h2>
+  <ul class="news-list">
+    {news.map((n) => (
+      <li class="card">
+        <a href={`/news/${n.id}`}><strong>{n.data.title}</strong></a>
+        <div class="muted">{n.data.date.toLocaleDateString('en-US', { dateStyle: 'long', timeZone: 'UTC' })}</div>
+        {n.data.summary && <p>{n.data.summary}</p>}
+      </li>
+    ))}
+  </ul>
+</Base>

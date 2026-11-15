@@ -1,0 +1,39 @@
+---
+import { site } from '../config';
+---
+<div id="alerts" aria-live="polite" data-url={site.alertsCsvUrl} data-tz={site.timeZone}></div>
+
+<script>
+  import { activeAlerts } from '../lib/alerts';
+
+  const host = document.getElementById('alerts');
+  const url = host?.dataset.url;
+  const tz = host?.dataset.tz ?? 'America/Chicago';
+
+  async function load() {
+    if (!host || !url) return;
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) return;
+      const alerts = activeAlerts(await res.text(), tz);
+      host.replaceChildren(
+        ...alerts.map((a) => {
+          const el = document.createElement('div');
+          el.className = 'alert';
+          el.dataset.severity = a.severity;
+          el.setAttribute('role', a.severity === 'emergency' ? 'alert' : 'status');
+          const label = document.createElement('strong');
+          label.textContent =
+            a.severity === 'emergency' ? 'Emergency: ' : a.severity === 'warning' ? 'Notice: ' : 'Info: ';
+          el.append(label, document.createTextNode(a.message)); // text only, never HTML
+          return el;
+        }),
+      );
+    } catch {
+      /* fail silently: the site works fine without alerts */
+    }
+  }
+
+  load();
+  setInterval(load, 5 * 60 * 1000); // pick up changes without a reload
+</script>

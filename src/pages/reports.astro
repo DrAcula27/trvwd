@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import DriveFolder from '../components/DriveFolder.astro';
+import { site } from '../config';
+---
+<Base title="Reports">
+  <h1>Reports</h1>
+  <DriveFolder folderId={site.driveFolders.reports} title="Reports" />
+</Base>

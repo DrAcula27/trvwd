@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import MeetingCard from '../components/MeetingCard.astro';
+import DriveFolder from '../components/DriveFolder.astro';
+import { site } from '../config';
+---
+<Base title="Meetings">
+  <h1>Meetings</h1>
+  <MeetingCard />
+  <h2>Minutes</h2>
+  <DriveFolder folderId={site.driveFolders.minutes} title="Meeting minutes" />
+  <h2>Resolutions</h2>
+  <DriveFolder folderId={site.driveFolders.resolutions} title="Resolutions" />
+</Base>

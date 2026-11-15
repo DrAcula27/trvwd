@@ -1,0 +1,31 @@
+---
+import { getNextMeeting } from '../lib/meetings';
+import { meeting, site } from '../config';
+
+const next = getNextMeeting(meeting, site.timeZone);
+---
+<section class="meeting" aria-labelledby="meeting-h">
+  <h2 id="meeting-h">Next commissioner meeting</h2>
+  <p class="when">
+    <span data-mt="date">{next.dateLabel}</span><br />
+    <span data-mt="time">{next.timeLabel}</span>
+  </p>
+  <p class="notice" data-mt="notice" hidden={!next.notice}>{next.notice}</p>
+  <p>{meeting.location}</p>
+  <p class="muted">{meeting.schedule}. Open to the public.</p>
+</section>
+
+<script>
+  // The page is built ahead of time, so recompute in the browser to stay
+  // correct without a redeploy. Same function, same result.
+  import { getNextMeeting } from '../lib/meetings';
+  import { meeting, site } from '../config';
+
+  const next = getNextMeeting(meeting, site.timeZone);
+  const set = (k: string, v: string) =>
+    document.querySelectorAll(`[data-mt="${k}"]`).forEach((el) => (el.textContent = v));
+  set('date', next.dateLabel);
+  set('time', next.timeLabel);
+  set('notice', next.notice ?? '');
+  document.querySelectorAll('[data-mt="notice"]').forEach((el) => ((el as HTMLElement).hidden = !next.notice));
+</script>

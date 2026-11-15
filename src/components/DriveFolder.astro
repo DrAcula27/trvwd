@@ -1,0 +1,20 @@
+---
+interface Props { folderId: string; title: string }
+const { folderId, title } = Astro.props;
+---
+{folderId ? (
+  <>
+    <iframe
+      class="drive"
+      title={title}
+      src={`https://drive.google.com/embeddedfolderview?id=${folderId}#list`}
+      loading="lazy"
+    ></iframe>
+    <p class="muted">
+      Trouble viewing the list?
+      <a href={`https://drive.google.com/drive/folders/${folderId}`}>Open the folder in Google Drive</a>.
+    </p>
+  </>
+) : (
+  <p class="muted">Add this folder's ID in <code>src/config.ts</code> to show documents here.</p>
+)}

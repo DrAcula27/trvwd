@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { commissioners, staff } from '../data/staff';
+---
+<Base title="Staff">
+  <h1>Commissioners and staff</h1>
+  <h2>Commissioners</h2>
+  <div class="grid">
+    {commissioners.map((p) => (
+      <div class="card"><strong>{p.name}</strong><br />{p.role}<br /><span class="muted">{p.note}</span></div>
+    ))}
+  </div>
+  <h2>Staff</h2>
+  <div class="grid">
+    {staff.map((p) => (
+      <div class="card"><strong>{p.name}</strong><br />{p.role}<br /><a href={`mailto:${p.email}`}>{p.email}</a></div>
+    ))}
+  </div>
+</Base>
