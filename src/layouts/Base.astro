@@ -37,24 +37,31 @@ const nav = [
         try { t = localStorage.getItem('theme'); } catch (e) {}
         if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = t;
+        document.documentElement.classList.add('js');
       })();
     </script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <AlertBanner />
     <header class="site-header">
+      <AlertBanner />
       <div class="wrap bar">
         <a class="brand" href="/">{site.name}</a>
-        <ThemeToggle />
+        <nav id="site-nav" aria-label="Main">
+          <ul>
+            {nav.map(([href, label]) => (
+              <li><a href={href} aria-current={path === href || (href !== '/' && path.startsWith(href)) ? 'page' : undefined}>{label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <div class="actions">
+          <ThemeToggle />
+          <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+            <span class="bars" aria-hidden="true"></span>
+            <span>Menu</span>
+          </button>
+        </div>
       </div>
-      <nav class="wrap" aria-label="Main">
-        <ul>
-          {nav.map(([href, label]) => (
-            <li><a href={href} aria-current={path === href || (href !== '/' && path.startsWith(href)) ? 'page' : undefined}>{label}</a></li>
-          ))}
-        </ul>
-      </nav>
     </header>
     <main id="main" class="wrap">
       <slot />
@@ -66,5 +73,32 @@ const nav = [
         <p>After-hours emergencies: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
       </div>
     </footer>
+    <script>
+      const header = document.querySelector<HTMLElement>('.site-header')!;
+      const btn = document.getElementById('nav-toggle')!;
+      const nav = document.getElementById('site-nav')!;
+      const mobile = matchMedia('(max-width: 56rem)');
+
+      const isOpen = () => btn.getAttribute('aria-expanded') === 'true';
+      const setOpen = (open: boolean) => {
+        header.classList.toggle('nav-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+      };
+
+      btn.addEventListener('click', () => setOpen(!isOpen()));
+      nav.addEventListener('click', (e) => {
+        if ((e.target as Element).closest('a')) setOpen(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen()) { setOpen(false); btn.focus(); }
+      });
+      mobile.addEventListener('change', () => setOpen(false));
+
+      // Keep anchor links from landing underneath the sticky header.
+      const setHeight = () =>
+        document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+      new ResizeObserver(setHeight).observe(header);
+      setHeight();
+    </script>
   </body>
 </html>
