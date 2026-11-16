@@ -11,6 +11,15 @@ const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data
   <p>{site.tagline}</p>
   <MeetingCard />
 
+
+  <section class="card">
+    <h2>Our Mission</h2>
+    <p>{site.mission}</p>
+    <p>We strive to be professional and transparent in our relationship with our customers.</p>
+    <p>{site.name} is a municipal corporation operating a water supply and distribution system as authorized by Washington State Law in <a href="http://apps.leg.wa.gov/RCW/default.aspx?cite=57" target="_blank" rel="noopener noreferrer">RCW 57</a>.</p>
+    <p>To view a map of our service area, click <a href="/images/home/TRVWD_Service_Area.png" target="_blank" rel="noopener noreferrer">here</a>.</p>
+  </section>
+
   <div class="grid">
     <div class="card">
       <h2>Report a problem</h2>

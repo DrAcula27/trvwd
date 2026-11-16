@@ -11,6 +11,8 @@ export const site = {
   mailingAddress: 'P.O. Box 849, Belfair, WA 98528',
   location: '1665 NE Tahuya River Dr, Tahuya, WA 98588',
   hours: 'by appointment only, please call or email to schedule.',
+  mission:
+    'To provide an ample supply of pure water to the Tahuya River Valley Community at a reasonable cost.',
 
   // IANA time zone. Meeting date/time math happens in this zone,
   // no matter where the visitor is.
