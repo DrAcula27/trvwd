@@ -13,7 +13,7 @@ import { commissioners, staff } from '../data/staff';
   <h2>Staff</h2>
   <div class="grid">
     {staff.map((p) => (
-      <div class="card"><strong>{p.name}</strong><br />{p.role}<br /><a href={`mailto:${p.email}`}>{p.email}</a></div>
+      <div class="card"><strong>{p.name}</strong><br />{p.role}<br /><a href={`mailto:${p.email}`}>{p.email}</a><br /><a href={`tel:${p.phone}`}>{p.phone}</a></div>
     ))}
   </div>
 </Base>
