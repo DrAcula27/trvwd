@@ -6,7 +6,7 @@ import { site } from '../config';
   <h1>Contact us</h1>
   <p>Office: <a href={`tel:${site.phone}`}>{site.phone}</a> · {site.hours}</p>
   <p>After-hours emergencies: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
-  <p>{site.address}</p>
+  <p>{site.mailingAddress}</p>
 
   {site.web3formsKey ? (
     <form class="contact" action="https://api.web3forms.com/submit" method="POST">

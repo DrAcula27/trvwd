@@ -13,6 +13,7 @@ const next = getNextMeeting(meeting, site.timeZone);
   <p class="notice" data-mt="notice" hidden={!next.notice}>{next.notice}</p>
   <p>{meeting.location}</p>
   <p class="muted">{meeting.schedule}. Open to the public.</p>
+  <p class="muted">This location is only used for meetings. Please send all mail to the mailing address: {site.mailingAddress}.</p>
 </section>
 
 <script>

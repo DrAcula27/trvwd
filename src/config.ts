@@ -8,7 +8,8 @@ export const site = {
   phone: '360-275-0279',
   emergencyPhone: '',
   email: 'trvwdistrict@outlook.com',
-  address: 'P.O. Box 849, Belfair, WA 98528',
+  mailingAddress: 'P.O. Box 849, Belfair, WA 98528',
+  location: '1665 NE Tahuya River Dr, Tahuya, WA 98588',
   hours: 'by appointment only, please call or email to schedule.',
 
   // IANA time zone. Meeting date/time math happens in this zone,
@@ -39,7 +40,8 @@ export const meeting: MeetingConfig = {
   time: '18:00', // 24-hour, utility's local time
   durationHours: 1, // meeting counts as "upcoming" until this long after start
   schedule: 'Fourth Tuesday of every month',
-  location: 'Tahuya River Valley Community Club, 1665 NE Tahuya River Dr, Tahuya, WA 98588',
+  location:
+    'Tahuya River Valley Community Club, 1665 NE Tahuya River Dr, Tahuya, WA 98588',
   // Cancelled or rescheduled meetings. `date` is the REGULAR date affected.
   exceptions: [
     // { date: '2026-12-22', status: 'moved', newDate: '2026-12-15', note: 'Moved for the holidays.' },

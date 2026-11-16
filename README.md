@@ -10,13 +10,13 @@ Static site built with [Astro](https://astro.build). No server, no database.
 
 ## Where to change things
 
-| What                                                                | Where                                   |
-| ------------------------------------------------------------------- | --------------------------------------- |
-| Phone, address, Drive folder IDs, alerts URL, meeting time/location | `src/config.ts`                         |
-| Cancel or move a meeting                                            | `exceptions` in `src/config.ts`         |
-| Commissioners and staff                                                     | `src/data/staff.ts`                     |
-| News posts                                                          | add a `.md` file in `src/content/news/` |
-| Colors, fonts                                                       | top of `src/styles/global.css`          |
+| What                                                                  | Where                                   |
+| --------------------------------------------------------------------- | --------------------------------------- |
+| Phone, addresses, Drive folder IDs, alerts URL, meeting time/location | `src/config.ts`                         |
+| Cancel or move a meeting                                              | `exceptions` in `src/config.ts`         |
+| Commissioners and staff                                               | `src/data/staff.ts`                     |
+| News posts                                                            | add a `.md` file in `src/content/news/` |
+| Colors, fonts                                                         | top of `src/styles/global.css`          |
 
 ## Alerts (Google Sheet)
 
