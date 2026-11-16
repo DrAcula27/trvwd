@@ -5,7 +5,7 @@ import { site } from '../config';
 <Base title="Contact">
   <h1>Contact us</h1>
   <p>Office: <a href={`tel:${site.phone}`}>{site.phone}</a> · {site.hours}</p>
-  <p>After-hours emergencies: <a href={`tel:${site.emergencyPhone}`}>{site.emergencyPhone}</a></p>
+  <p>After-hours emergencies: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
   <p>{site.address}</p>
 
   {site.web3formsKey ? (

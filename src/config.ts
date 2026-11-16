@@ -6,10 +6,10 @@ export const site = {
   name: 'Tahuya River Valley Water District',
   tagline: 'Clean water and reliable service for our community.',
   phone: '360-275-0279',
-  emergencyPhone: '360-275-0279',
+  emergencyPhone: '',
   email: 'trvwdistrict@outlook.com',
   address: 'P.O. Box 849, Belfair, WA 98528',
-  hours: 'by appointment only, please call or email to schedule',
+  hours: 'by appointment only, please call or email to schedule.',
 
   // IANA time zone. Meeting date/time math happens in this zone,
   // no matter where the visitor is.
