@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site } from '../config';
+import MeetingCard from '../components/MeetingCard.astro';
 ---
 <Base title="Contact">
   <h1>Contact us</h1>
@@ -22,4 +23,7 @@ import { site } from '../config';
   ) : (
     <p>Email us at <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
   )}
+
+  <h2>Commissioner Meeting</h2>
+  <MeetingCard />
 </Base>
