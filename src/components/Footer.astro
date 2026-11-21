@@ -1,0 +1,11 @@
+---
+import { site } from '../config';
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{site.name} · {site.mailingAddress}</p>
+    <p>Office {site.phone} · {site.hours}</p>
+    <p>After-hours emergencies: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
+  </div>
+</footer>

@@ -1,29 +1,19 @@
 ---
 import '../styles/global.css';
-import AlertBanner from '../components/AlertBanner.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import { site } from '../config';
 
 interface Props { title?: string; description?: string }
 const { title, description = site.tagline } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-
-const nav = [
-  ['/', 'Home'],
-  ['/staff', 'Staff'],
-  ['/meetings', 'Meetings'],
-  ['/reports', 'Reports'],
-  ['/news', 'News'],
-  ['/resources', 'Resources'],
-  ['/contact', 'Contact'],
-];
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta
@@ -44,40 +34,11 @@ const nav = [
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <header class="site-header">
-      <AlertBanner />
-      <div class="wrap bar">
-        <div class="brand-actions">
-          <a href="/" class="brand">
-            <img src="/images/favicon.ico" alt={site.name} width="32" height="32" />
-          </a>
-          <ThemeToggle />
-        </div>
-        <nav id="site-nav" aria-label="Main">
-          <ul>
-            {nav.map(([href, label]) => (
-              <li><a href={href} aria-current={path === href || (href !== '/' && path.startsWith(href)) ? 'page' : undefined}>{label}</a></li>
-            ))}
-          </ul>
-        </nav>
-        <div class="menu-toggle">
-          <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-            <span class="bars" aria-hidden="true"></span>
-            <span>Menu</span>
-          </button>
-        </div>
-      </div>
-    </header>
+    <Header title={title} description={description} />
     <main id="main" class="wrap">
       <slot />
     </main>
-    <footer class="site-footer">
-      <div class="wrap">
-        <p>{site.name} · {site.mailingAddress}</p>
-        <p>Office {site.phone} · {site.hours}</p>
-        <p>After-hours emergencies: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
-      </div>
-    </footer>
+    <Footer />
     <script>
       const header = document.querySelector<HTMLElement>('.site-header')!;
       const btn = document.getElementById('nav-toggle')!;

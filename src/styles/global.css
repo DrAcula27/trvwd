@@ -37,7 +37,8 @@
   box-sizing: border-box;
 }
 body {
-  margin: 0;
+  margin: 0 auto;
+  width: 100%;
   background: var(--bg);
   color: var(--ink);
   font: 1rem/1.6 var(--body);
@@ -54,11 +55,11 @@ h3 {
 }
 h1 {
   font-size: clamp(1.8rem, 5vw, 2.6rem);
-  margin: 2rem 0 1rem;
+  /* margin: 2rem 0 1rem; */
 }
 h2 {
   font-size: 1.4rem;
-  margin: 2rem 0 0.5rem;
+  /* margin: 2rem 0 0.5rem; */
 }
 p,
 li {
@@ -290,6 +291,7 @@ html {
   border: 1px solid var(--line);
   border-radius: 0.5rem;
   padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
 }
 .grid {
   display: grid;
@@ -306,8 +308,8 @@ html {
 .news-list {
   list-style: none;
   padding: 0;
-  display: grid;
-  gap: 1rem;
+  /* display: grid; */
+  /* gap: 1rem; */
 }
 form.contact {
   display: grid;
