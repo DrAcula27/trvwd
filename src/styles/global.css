@@ -124,15 +124,21 @@ html {
 .bar {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: space-between;
   gap: 0.5rem 1.25rem;
   padding-block: 0.6rem;
+}
+.brand-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: auto;
 }
 .brand {
   font: 700 1.3rem var(--head);
   color: var(--ink);
   text-decoration: none;
-  margin-right: auto;
+  /* margin-right: auto; */
 }
 #site-nav ul {
   display: flex;
@@ -155,7 +161,7 @@ html {
   border-color: var(--brand);
   font-weight: 600;
 }
-.actions {
+.menu-toggle {
   display: flex;
   align-items: center;
   gap: 0.5rem;
