@@ -1,11 +1,77 @@
 ---
-import { site } from '../config';
+import { site } from "../config";
 ---
 
 <footer class="site-footer">
-  <div class="wrap">
-    <p>{site.name} · {site.mailingAddress}</p>
-    <p>Office {site.phone} · {site.hours}</p>
-    <p>After-hours emergencies: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
+  <div class="wrap grid">
+    <section class="footer-mission">
+      <img
+        src="/images/logos/logo_NoText.png"
+        alt="Tahuya River Valley Water District Logo"
+        class="footer-logo"
+      />
+      <p>
+        The mission of {site.name} is {site.mission}
+      </p>
+    </section>
+    <section class="footer-contact">
+      <h2 class="footer-heading">Contact Us</h2>
+      <p>
+        <strong>Mailing Address:</strong> {site.mailingAddress}
+      </p>
+      <p>
+        <strong>Phone:</strong>{" "}
+        <a href={`tel:${site.phone}`} class="phone-link">
+          {site.phone}
+        </a>
+      </p>
+      <p>
+        <strong>Email:</strong>{" "}
+        <a href={`mailto:${site.email}`} class="email-link">
+          {site.email}
+        </a>
+      </p>
+    </section>
+    <section class="footer-links">
+      <h2 class="footer-heading">Quick Links</h2>
+      <ul class="footer-links-list">
+        <a href="/">
+          <li class="footer-link">Home</li>
+        </a>
+        <a href="/staff">
+          <li class="footer-link">Staff</li>
+        </a>
+        <a href="/meetings">
+          <li class="footer-link">Meetings</li>
+        </a>
+        <a href="/reports">
+          <li class="footer-link">Reports</li>
+        </a>
+        <a href="/news">
+          <li class="footer-link">News</li>
+        </a>
+        <a href="/resources">
+          <li class="footer-link">Resources</li>
+        </a>
+        <a href="/contact">
+          <li class="footer-link">Contact</li>
+        </a>
+      </ul>
+    </section>
+  </div>
+  <div class="center">
+    <p class="footer-copyright">
+      &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
+    </p>
+    <p class="attribution">
+      Designed and built with ❤️ by{" "}
+      <a
+        href="https://danielle-andrews.devdecks.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Danielle Andrews
+      </a>
+    </p>
   </div>
 </footer>
