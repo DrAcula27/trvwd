@@ -1,13 +1,18 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { site } from '../config';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SetTheme from "../components/SetTheme.astro";
+import { site } from "../config";
 
-interface Props { title?: string; description?: string }
+interface Props {
+  title?: string;
+  description?: string;
+}
 const { title, description = site.tagline } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,50 +26,19 @@ const pageTitle = title ? `${title} | ${site.name}` : site.name;
       content="huYZOlMBGMcFhtCDBr1dK96xMlJKE3HwsGqAoCHR3bU"
     />
     <link rel="icon" href="/images/favicon.ico" />
-    <script is:inline>
-      // Set theme before first paint to avoid a flash.
-      (function () {
-        var t;
-        try { t = localStorage.getItem('theme'); } catch (e) {}
-        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.dataset.theme = t;
-        document.documentElement.classList.add('js');
-      })();
-    </script>
+    <SetTheme />
   </head>
   <body>
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="#main">
+      Skip to content
+    </a>
     <Header title={title} description={description} />
     <main id="main" class="wrap">
       <slot />
     </main>
     <Footer />
     <script>
-      const header = document.querySelector<HTMLElement>('.site-header')!;
-      const btn = document.getElementById('nav-toggle')!;
-      const nav = document.getElementById('site-nav')!;
-      const mobile = matchMedia('(max-width: 56rem)');
-
-      const isOpen = () => btn.getAttribute('aria-expanded') === 'true';
-      const setOpen = (open: boolean) => {
-        header.classList.toggle('nav-open', open);
-        btn.setAttribute('aria-expanded', String(open));
-      };
-
-      btn.addEventListener('click', () => setOpen(!isOpen()));
-      nav.addEventListener('click', (e) => {
-        if ((e.target as Element).closest('a')) setOpen(false);
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && isOpen()) { setOpen(false); btn.focus(); }
-      });
-      mobile.addEventListener('change', () => setOpen(false));
-
-      // Keep anchor links from landing underneath the sticky header.
-      const setHeight = () =>
-        document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
-      new ResizeObserver(setHeight).observe(header);
-      setHeight();
+      import "../lib/hamburgerMenu";
     </script>
   </body>
 </html>
