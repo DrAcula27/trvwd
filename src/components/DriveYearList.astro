@@ -1,0 +1,64 @@
+---
+// Lists a public Drive folder, grouped by year subfolder. Loaded in the browser,
+// so new files appear without a rebuild. See src/lib/drive.ts.
+import { site } from "../config";
+
+interface Props {
+  folderId: string;
+  title: string;
+}
+const { folderId, title } = Astro.props;
+---
+
+{folderId ? (
+  <div
+    class="drive-list"
+    data-drive-list
+    data-folder={folderId}
+    data-title={title}
+    data-key={site.driveApiKey}
+    data-tz={site.timeZone}
+    aria-live="polite"
+    aria-busy="true"
+  >
+    <p class="muted">Loading documents…</p>
+    <noscript>
+      <iframe
+        class="drive"
+        title={title}
+        src={`https://drive.google.com/embeddedfolderview?id=${folderId}#list`}
+      ></iframe>
+      <p>
+        <a href={`https://drive.google.com/drive/folders/${folderId}`}>
+          Open the folder in Google Drive
+        </a>
+      </p>
+    </noscript>
+  </div>
+) : (
+  <p class="muted">
+    Add this folder's ID in <code>src/config.ts</code> to show documents here.
+  </p>
+)}
+
+<script>
+  import { loadFolder, renderFolder, renderFallback } from "../lib/drive";
+
+  document
+    .querySelectorAll<HTMLElement>("[data-drive-list]")
+    .forEach(async (host) => {
+      const {
+        folder = "",
+        title = "Documents",
+        key = "",
+        tz = "America/Los_Angeles",
+      } = host.dataset;
+      try {
+        if (!key) throw new Error("No API key configured");
+        renderFolder(host, await loadFolder(key, folder), tz);
+      } catch (err) {
+        console.warn("Drive list unavailable, using embed fallback:", err);
+        renderFallback(host, folder, title);
+      }
+    });
+</script>

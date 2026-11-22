@@ -1,16 +1,62 @@
 ---
-import Base from '../layouts/Base.astro';
-import MeetingCard from '../components/MeetingCard.astro';
-import DriveFolder from '../components/DriveFolder.astro';
-import { site } from '../config';
+import Base from "../layouts/Base.astro";
+import MeetingCard from "../components/MeetingCard.astro";
+import DriveYearList from "../components/DriveYearList.astro";
+import { site } from "../config";
 ---
+
 <Base title="Meetings">
   <h1>Meetings</h1>
-  <p>As a public commission, {site.name} (TRVWD) is subject to the Open Public Meetings Act (<a href="http://apps.leg.wa.gov/RCW/default.aspx?cite=42.30" target="_blank" rel="noopener noreferrer">RCW 42.30</a>) and the Open Public Records Act (<a href="http://apps.leg.wa.gov/RCW/default.aspx?cite=42.56" target="_blank" rel="noopener noreferrer">RCW 42.56</a>). TRVWD supports open government and strives to maintain complete transparency to the ratepayers and citizens of the Water District.</p>
+  <p>
+    As a public commission, {site.name} (TRVWD) is subject to the Open Public
+    Meetings Act (
+    <a
+      href="http://apps.leg.wa.gov/RCW/default.aspx?cite=42.30"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      RCW 42.30
+    </a>
+    ) and the Open Public Records Act (
+    <a
+      href="http://apps.leg.wa.gov/RCW/default.aspx?cite=42.56"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      RCW 42.56
+    </a>
+    ). TRVWD supports open government and strives to maintain complete
+    transparency to the ratepayers and citizens of the Water District.
+  </p>
+
   <MeetingCard />
+
   <h2>Meeting Information</h2>
-  <p>TRVWD meetings are open to the public (except for rare executive sessions, <a href="http://apps.leg.wa.gov/RCW/default.aspx?cite=42.30.110" target="_blank" rel="noopener noreferrer">RCW 42.30.110</a>). We welcome everyone to attend our meetings. Public comments are welcome during regular business meeting, but may be limited at the discretion of the Commission.</p>
-  <p>Regular meetings of the Water Commission are held on the fourth Tuesday of each month, beginning at 6pm, located in the <a href="https://www.google.com/maps/place/1665+NE+Tahuya+River+Dr,+Tahuya,+WA+98588/@47.4212847,-122.9742256,236m/data=!3m1!1e3!4m6!3m5!1s0x5491c831cf0cff11:0x11424294f5d50c8d!8m2!3d47.421165!4d-122.973268!16s%2Fg%2F11c27wg_sp?entry=ttu&g_ep=EgoyMDI0MDkxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Tahuya River Valley Community Club Building</a> unless otherwise noted.</p>
+  <p>
+    TRVWD meetings are open to the public (except for rare executive sessions,{" "}
+    <a
+      href="http://apps.leg.wa.gov/RCW/default.aspx?cite=42.30.110"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      RCW 42.30.110
+    </a>
+    ). We welcome everyone to attend our meetings. Public comments are welcome
+    during regular business meeting, but may be limited at the discretion of the
+    Commission.
+  </p>
+  <p>
+    Regular meetings of the Water Commission are held on the fourth Tuesday of
+    each month, beginning at 6pm, located in the{" "}
+    <a
+      href="https://www.google.com/maps/place/1665+NE+Tahuya+River+Dr,+Tahuya,+WA+98588/@47.4212847,-122.9742256,236m/data=!3m1!1e3!4m6!3m5!1s0x5491c831cf0cff11:0x11424294f5d50c8d!8m2!3d47.421165!4d-122.973268!16s%2Fg%2F11c27wg_sp?entry=ttu&g_ep=EgoyMDI0MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Tahuya River Valley Community Club Building
+    </a>{" "}
+    unless otherwise noted.
+  </p>
   <iframe
     title="Tahuya River Valley Community Club Building"
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2680.168187091775!2d-122.9754146844319!3d47.42128467916486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5491c831cf0cff11%3A0x11424294f5d50c8d!2s1665%20NE%20Tahuya%20River%20Dr%2C%20Tahuya%2C%20WA%2098588!5e0!3m2!1sen!2sus!4v1694941550426!5m2!1sen!2sus"
@@ -21,14 +67,39 @@ import { site } from '../config';
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
   ></iframe>
+
   <h2>Public Records</h2>
-  <p>TRVWD will make available upon request our public records, except those that are exempted under the Open Public Records Act (<a href="http://apps.leg.wa.gov/RCW/default.aspx?cite=42.56.070" target="_blank" rel="noopener noreferrer">RCW 42.56.070</a>). The majority of TRVWD public records are available for download below.</p>
-  <p>If you need a record not listed below, you may submit a public records request.</p>
+  <p>
+    TRVWD will make available upon request our public records, except those that
+    are exempted under the Open Public Records Act (
+    <a
+      href="http://apps.leg.wa.gov/RCW/default.aspx?cite=42.56.070"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      RCW 42.56.070
+    </a>
+    ). The majority of TRVWD public records are available for download below.
+  </p>
+  <p>
+    If you need a record not listed below, you may submit a public records
+    request.
+  </p>
+
   <h3>Meeting Minutes</h3>
-  <p>Access official meeting minutes and documentation from our commission meetings.</p>
-  <p>Minutes are added after they are approved by the commission, which typically occurs at the next regular meeting after the meeting to which they pertain. For example, minutes from a January meeting would typically be approved at the February regular meeting and added to this archive shortly thereafter.</p>
-  <DriveFolder folderId={site.driveFolders.minutes} title="Meeting minutes" />
+  <p>
+    Access official meeting minutes and documentation from our commission
+    meetings.
+  </p>
+  <p>
+    Minutes are added after they are approved by the commission, which typically
+    occurs at the next regular meeting after the meeting to which they pertain.
+    For example, minutes from a January meeting would typically be approved at
+    the February regular meeting and added to this archive shortly thereafter.
+  </p>
+  <DriveYearList folderId={site.driveFolders.minutes} title="Meeting minutes" />
+
   <h3>Resolutions</h3>
   <p>Access official resolutions passed by the commission.</p>
-  <DriveFolder folderId={site.driveFolders.resolutions} title="Resolutions" />
+  <DriveYearList folderId={site.driveFolders.resolutions} title="Resolutions" />
 </Base>

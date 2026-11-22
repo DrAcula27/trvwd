@@ -1,12 +1,19 @@
 ---
-import Base from '../layouts/Base.astro';
-import DriveFolder from '../components/DriveFolder.astro';
-import { site } from '../config';
-import { resources } from '../data/resources';
+import Base from "../layouts/Base.astro";
+// import DriveFolder from '../components/DriveFolder.astro';
+import DriveYearList from "../components/DriveYearList.astro";
+import { site } from "../config";
+import { resources } from "../data/resources";
 ---
+
 <Base title="Resources">
   <h1>Resources</h1>
-  <p>Valuable information on water management, conservation, billing, service requests, and more. Stay informed, access forms, and find answers to common questions. We're committed to providing you with the resources you need for a sustainable water usage experience.</p>
+  <p>
+    Valuable information on water management, conservation, billing, service
+    requests, and more. Stay informed, access forms, and find answers to common
+    questions. We're committed to providing you with the resources you need for
+    a sustainable water usage experience.
+  </p>
   <h2>Resources</h2>
   <h3>Setting Up Automatic Bank Payments</h3>
   <ol>
@@ -17,19 +24,28 @@ import { resources } from '../data/resources';
     <li>Confirm the start date for the automatic payments.</li>
     <li>Keep a record of the confirmation for your records.</li>
   </ol>
-  <p><strong>Need Help?</strong> If you have any questions or need assistance with setting up automatic bank payments, please contact us at {site.email} or {site.phone}.</p>
+  <p>
+    <strong>Need Help?</strong> If you have any questions or need assistance
+    with setting up automatic bank payments, please contact us at {site.email}{" "}
+    or {site.phone}.
+  </p>
 
   <div class="grid">
     {resources.map((resource) => (
       <div class="card">
         <strong>{resource.label}</strong>
         <br />
-        <a href={`${resource.href}`} rel="noopener noreferrer" target="_blank">{resource.href}</a>
+        <a href={`${resource.href}`} rel="noopener noreferrer" target="_blank">
+          {resource.href}
+        </a>
         <br />
-        <a class="phone-link" href={`tel:${resource.phone}`}>{resource.phone}</a>
+        <a class="phone-link" href={`tel:${resource.phone}`}>
+          {resource.phone}
+        </a>
       </div>
     ))}
   </div>
+
   <h2>Notices</h2>
-  <DriveFolder folderId={site.driveFolders.notices} title="Public Notices" />
+  <DriveYearList folderId={site.driveFolders.notices} title="Public Notices" />
 </Base>

@@ -1,7 +1,11 @@
 ---
-interface Props { folderId: string; title: string }
+interface Props {
+  folderId: string;
+  title: string;
+}
 const { folderId, title } = Astro.props;
 ---
+
 {folderId ? (
   <>
     <iframe
@@ -11,10 +15,15 @@ const { folderId, title } = Astro.props;
       loading="lazy"
     ></iframe>
     <p class="muted">
-      Trouble viewing the list?
-      <a href={`https://drive.google.com/drive/folders/${folderId}`}>Open the folder in Google Drive</a>.
+      Trouble viewing the list?{" "}
+      <a href={`https://drive.google.com/drive/folders/${folderId}`}>
+        Open the folder in Google Drive
+      </a>
+      .
     </p>
   </>
 ) : (
-  <p class="muted">Add this folder's ID in <code>src/config.ts</code> to show documents here.</p>
+  <p class="muted">
+    Add this folder's ID in <code>src/config.ts</code> to show documents here.
+  </p>
 )}

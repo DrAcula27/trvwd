@@ -1,4 +1,4 @@
-# Utility website
+# TRVWD website
 
 Static site built with [Astro](https://astro.build). No server, no database.
 
@@ -42,3 +42,16 @@ Make one folder each for minutes, notices, reports, resolutions. Share as
 Connect the GitHub repo. Build command `npm run build`, output directory `dist`.
 Then point the Namecheap domain at Cloudflare Pages (custom domain setup).
 The 4th-Tuesday date is recalculated in the browser, so no scheduled rebuilds are needed.
+
+## Document lists (Drive API)
+
+`DriveYearList` lists a Drive folder in the browser: each year subfolder becomes a
+collapsible group (newest first); loose files are listed directly. No rebuild needed.
+
+- Name files `YYYY-MM-DD_Description.pdf` so they sort newest first.
+- Folders must be shared "Anyone with the link: Viewer".
+- API key: Google Cloud Console > new project > enable **Google Drive API** > Credentials >
+  Create API key. Restrict it: _Websites_ (HTTP referrers) = your domain, `www.` variant,
+  your `*.pages.dev` preview, `http://localhost:4321/*`; _API restrictions_ = Google Drive API only.
+  Paste it into `driveApiKey` in `src/config.ts`. The key is visible in the page source by design.
+- Until a key is set (or if the API fails) the page falls back to the plain Drive embed.
