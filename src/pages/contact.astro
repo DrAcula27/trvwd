@@ -1,27 +1,60 @@
 ---
-import Base from '../layouts/Base.astro';
-import { site } from '../config';
-import MeetingCard from '../components/MeetingCard.astro';
+import Base from "../layouts/Base.astro";
+import { site } from "../config";
+import MeetingCard from "../components/MeetingCard.astro";
 ---
+
 <Base title="Contact">
   <h1>Contact us</h1>
-  <p>Office: <a href={`tel:${site.phone}`}>{site.phone}</a> · {site.hours}</p>
-  <p>After-hours emergencies: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
-  <p>{site.mailingAddress}</p>
+  <p>
+    <strong>Phone:</strong> <a href={`tel:${site.phone}`}>{site.phone}</a> ·{" "}
+    {site.hours}
+  </p>
+  <p>
+    <strong>After-hours emergencies:</strong>{" "}
+    <a href={`tel:${site.phone}`}>{site.phone}</a>
+  </p>
+  <p>
+    <strong>Mailing Address:</strong> {site.mailingAddress}
+  </p>
 
   {site.web3formsKey ? (
-    <form class="contact" action="https://api.web3forms.com/submit" method="POST">
+    <form
+      class="contact"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+    >
       <input type="hidden" name="access_key" value={site.web3formsKey} />
-      <input type="hidden" name="subject" value={`Website message for ${site.name}`} />
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-      <label>Your name <input name="name" required autocomplete="name" /></label>
-      <label>Email <input type="email" name="email" required autocomplete="email" /></label>
-      <label>Message <textarea name="message" rows="6" required></textarea></label>
-      <button class="primary" type="submit">Send message</button>
+      <input
+        type="hidden"
+        name="subject"
+        value={`Website message for ${site.name}`}
+      />
+      <input
+        type="checkbox"
+        name="botcheck"
+        style="display:none"
+        tabindex="-1"
+        autocomplete="off"
+      />
+      <label>
+        Your name <input name="name" required autocomplete="name" />
+      </label>
+      <label>
+        Email <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>
+        Message <textarea name="message" rows="6" required></textarea>
+      </label>
+      <button class="primary" type="submit">
+        Send message
+      </button>
       <p class="muted">For outages or emergencies, please call instead.</p>
     </form>
   ) : (
-    <p>Email us at <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    <p>
+      <strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
   )}
 
   <h2>Commissioner Meeting</h2>
