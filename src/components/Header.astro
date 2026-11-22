@@ -1,0 +1,45 @@
+---
+import AlertBanner from '../components/AlertBanner.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import { site } from '../config';
+
+interface Props { title?: string; description?: string }
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const nav = [
+  ['/', 'Home'],
+  ['/staff', 'Staff'],
+  ['/meetings', 'Meetings'],
+  ['/reports', 'Reports'],
+  ['/news', 'News'],
+  ['/resources', 'Resources'],
+  ['/contact', 'Contact'],
+];
+---
+
+<header class="site-header">
+  <AlertBanner />
+  <div class="wrap bar">
+    <div class="brand-actions">
+      <a href="/" class="brand">
+        <img src="/images/favicon.ico" alt={site.name} width="32" height="32" />
+      </a>
+      <ThemeToggle />
+    </div>
+    <nav id="site-nav" aria-label="Main">
+      <ul>
+        {nav.map(([href, label]) => (
+          <li>
+            <a href={href} aria-current={path === href || (href !== '/' && path.startsWith(href)) ? 'page' : undefined}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="menu-toggle">
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="bars" aria-hidden="true"></span>
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+</header>

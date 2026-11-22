@@ -1,34 +1,83 @@
 ---
-import Base from '../layouts/Base.astro';
-import MeetingCard from '../components/MeetingCard.astro';
-import { getCollection } from 'astro:content';
-import { site } from '../config';
+import Base from "../layouts/Base.astro";
+import MeetingCard from "../components/MeetingCard.astro";
+import { getCollection } from "astro:content";
+import { site } from "../config";
 
-const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+const news = (await getCollection("news"))
+  .sort((a, b) => +b.data.date - +a.data.date)
+  .slice(0, 3);
 ---
+
 <Base>
   <h1>{site.name}</h1>
   <p>{site.tagline}</p>
+
   <MeetingCard />
 
-  <div class="grid">
-    <div class="card">
-      <h2>Report a problem</h2>
-      <p>Office: <a href={`tel:${site.phone}`}>{site.phone}</a></p>
-      <p>After-hours emergencies: <a href={`tel:${site.emergencyPhone}`}>{site.emergencyPhone}</a></p>
-    </div>
-    <div class="card">
-      <h2>Public records</h2>
-      <p><a href="/meetings">Minutes and resolutions</a> and <a href="/reports">reports</a>.</p>
-    </div>
-  </div>
+  <section class="card">
+    <h2>Our Mission</h2>
+    <p>{site.mission}</p>
+    <p>
+      We strive to be professional and transparent in our relationship with our
+      customers.
+    </p>
+    <p>
+      {site.name} is a municipal corporation operating a water supply and
+      distribution system as authorized by Washington State Law in{" "}
+      <a
+        href="http://apps.leg.wa.gov/RCW/default.aspx?cite=57"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        RCW 57
+      </a>
+      .
+    </p>
+    <p>
+      To view a map of our service area, click{" "}
+      <a
+        href="/images/home/TRVWD_Service_Area.png"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        here
+      </a>
+      .
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Report a problem</h2>
+    <p>
+      Phone: <a href={`tel:${site.phone}`}>{site.phone}</a>
+    </p>
+    <p>
+      After-hours emergencies: <a href={`tel:${site.phone}`}>{site.phone}</a>
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Public records</h2>
+    <p>
+      <a href="/meetings">Minutes and resolutions</a> and{" "}
+      <a href="/reports">reports</a>.
+    </p>
+  </section>
 
   <h2>Latest news</h2>
   <ul class="news-list">
     {news.map((n) => (
       <li class="card">
-        <a href={`/news/${n.id}`}><strong>{n.data.title}</strong></a>
-        <div class="muted">{n.data.date.toLocaleDateString('en-US', { dateStyle: 'long', timeZone: 'UTC' })}</div>
+        <a href={`/news/${n.id}`}>
+          <strong>{n.data.title}</strong>
+        </a>
+        <div class="muted">
+          {n.data.date.toLocaleDateString("en-US", {
+            dateStyle: "long",
+            timeZone: "UTC",
+          })}
+        </div>
         {n.data.summary && <p>{n.data.summary}</p>}
       </li>
     ))}

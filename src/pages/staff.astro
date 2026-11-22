@@ -1,19 +1,46 @@
 ---
-import Base from '../layouts/Base.astro';
-import { commissioners, staff } from '../data/staff';
+import Base from "../layouts/Base.astro";
+import { commissioners, staff } from "../data/staff";
 ---
+
 <Base title="Staff">
   <h1>Commissioners and staff</h1>
   <h2>Commissioners</h2>
   <div class="grid">
     {commissioners.map((p) => (
-      <div class="card"><strong>{p.name}</strong><br />{p.role}<br /><span class="muted">{p.note}</span></div>
+      <div class="card">
+        <strong>{p.name}</strong>
+        <br />
+        {p.role}
+        <br />
+        <span class="muted">{p.note}</span>
+      </div>
     ))}
   </div>
   <h2>Staff</h2>
   <div class="grid">
     {staff.map((p) => (
-      <div class="card"><strong>{p.name}</strong><br />{p.role}<br /><a href={`mailto:${p.email}`}>{p.email}</a></div>
+      <div class="card grid">
+        <div>
+          <p>
+            <strong>{p.name}</strong>
+          </p>
+          <p>{p.role}</p>
+          <p>
+            <a href={`mailto:${p.email}`}>{p.email}</a>
+          </p>
+          <p>
+            <a href={`tel:${p.phone}`}>{p.phone}</a>
+          </p>
+        </div>
+        <div class="staff-photo-container">
+          <img
+            src="images/staff/Drew-Noble.png"
+            alt={p.name}
+            class="staff-photo"
+          />
+        </div>
+      </div>
     ))}
   </div>
 </Base>

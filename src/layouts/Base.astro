@@ -1,66 +1,44 @@
 ---
-import '../styles/global.css';
-import AlertBanner from '../components/AlertBanner.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
-import { site } from '../config';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SetTheme from "../components/SetTheme.astro";
+import { site } from "../config";
 
-interface Props { title?: string; description?: string }
+interface Props {
+  title?: string;
+  description?: string;
+}
 const { title, description = site.tagline } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-
-const nav = [
-  ['/', 'Home'],
-  ['/staff', 'Staff'],
-  ['/meetings', 'Meetings'],
-  ['/reports', 'Reports'],
-  ['/news', 'News'],
-  ['/resources', 'Resources'],
-  ['/contact', 'Contact'],
-];
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <script is:inline>
-      // Set theme before first paint to avoid a flash.
-      (function () {
-        var t;
-        try { t = localStorage.getItem('theme'); } catch (e) {}
-        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.dataset.theme = t;
-      })();
-    </script>
+    <meta
+      name="google-site-verification"
+      content="huYZOlMBGMcFhtCDBr1dK96xMlJKE3HwsGqAoCHR3bU"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <SetTheme />
   </head>
   <body>
-    <a class="skip" href="#main">Skip to content</a>
-    <AlertBanner />
-    <header class="site-header">
-      <div class="wrap bar">
-        <a class="brand" href="/">{site.name}</a>
-        <ThemeToggle />
-      </div>
-      <nav class="wrap" aria-label="Main">
-        <ul>
-          {nav.map(([href, label]) => (
-            <li><a href={href} aria-current={path === href || (href !== '/' && path.startsWith(href)) ? 'page' : undefined}>{label}</a></li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+    <a class="skip" href="#main">
+      Skip to content
+    </a>
+    <Header title={title} description={description} />
     <main id="main" class="wrap">
       <slot />
     </main>
-    <footer class="site-footer">
-      <div class="wrap">
-        <p>{site.name} · {site.address}</p>
-        <p>Office {site.phone} · {site.hours}</p>
-        <p>After-hours emergencies: <a href={`tel:${site.emergencyPhone}`}>{site.emergencyPhone}</a></p>
-      </div>
-    </footer>
+    <Footer />
+    <script>
+      import "../lib/hamburgerMenu";
+    </script>
   </body>
 </html>
