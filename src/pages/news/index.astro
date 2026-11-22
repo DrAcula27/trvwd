@@ -1,15 +1,25 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data.date);
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+const news = (await getCollection("news")).sort(
+  (a, b) => +b.data.date - +a.data.date,
+);
 ---
+
 <Base title="News">
   <h1>News</h1>
   <ul class="news-list">
     {news.map((n) => (
-      <li class="card">
-        <a href={`/news/${n.id}`}><strong>{n.data.title}</strong></a>
-        <div class="muted">{n.data.date.toLocaleDateString('en-US', { dateStyle: 'long', timeZone: 'UTC' })}</div>
+      <li class="card container">
+        <a href={`/news/${n.id}`}>
+          <strong>{n.data.title}</strong>
+        </a>
+        <div class="muted">
+          {n.data.date.toLocaleDateString("en-US", {
+            dateStyle: "long",
+            timeZone: "UTC",
+          })}
+        </div>
         {n.data.summary && <p>{n.data.summary}</p>}
       </li>
     ))}
