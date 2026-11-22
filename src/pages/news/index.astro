@@ -10,18 +10,18 @@ const news = (await getCollection("news")).sort(
   <h1>News</h1>
   <ul class="news-list">
     {news.map((n) => (
-      <li class="card container">
-        <a href={`/news/${n.id}`}>
+      <a href={`/news/${n.id}`} class="card container">
+        <li>
           <strong>{n.data.title}</strong>
-        </a>
-        <div class="muted">
-          {n.data.date.toLocaleDateString("en-US", {
-            dateStyle: "long",
-            timeZone: "UTC",
-          })}
-        </div>
-        {n.data.summary && <p>{n.data.summary}</p>}
-      </li>
+          <div class="muted">
+            {n.data.date.toLocaleDateString("en-US", {
+              dateStyle: "long",
+              timeZone: "UTC",
+            })}
+          </div>
+          {n.data.summary && <p>{n.data.summary}</p>}
+        </li>
+      </a>
     ))}
   </ul>
 </Base>
