@@ -102,7 +102,7 @@ img {
   margin: 1rem 0;
 }
 
-/* Header (sticky; alerts live inside it) */
+/* Sticky header */
 html {
   scroll-padding-top: var(--header-h, 6rem);
 }
@@ -331,6 +331,10 @@ html {
   border-radius: 0.5rem;
   background: #fff;
 }
+.news-list a,
+.latest-news-list a {
+  text-decoration: none;
+}
 .news-list {
   list-style: none;
   padding: 0;
@@ -341,6 +345,15 @@ html {
 .latest-news-list {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   gap: 1rem;
+}
+.news-list > a:first-child {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-ink);
+}
+.news-list > a:first-child .muted {
+  color: inherit;
+  opacity: 0.85;
 }
 .latest-news-list > .container {
   margin-block: 0;
