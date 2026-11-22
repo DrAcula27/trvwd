@@ -80,6 +80,10 @@ iframe:focus-visible {
   outline: 3px solid var(--brand);
   outline-offset: 2px;
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
 .muted {
   color: var(--muted);
 }
@@ -263,6 +267,20 @@ html {
     max-height: 100dvh;
     overflow-y: auto;
   }
+}
+
+/* Staff page */
+.staff-photo-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.staff-photo {
+  width: 40rem;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.5rem;
 }
 
 /* Meeting card: the main thing on the home page */
