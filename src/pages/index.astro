@@ -6,7 +6,7 @@ import { site } from "../config";
 
 const news = (await getCollection("news"))
   .sort((a, b) => +b.data.date - +a.data.date)
-  .slice(0, 3);
+  .slice(0, 4);
 ---
 
 <Base>
@@ -47,7 +47,7 @@ const news = (await getCollection("news"))
     </p>
   </section>
 
-  <section class="card">
+  <section class="card container">
     <h2>Report a problem</h2>
     <p>
       Phone: <a href={`tel:${site.phone}`}>{site.phone}</a>
@@ -57,7 +57,7 @@ const news = (await getCollection("news"))
     </p>
   </section>
 
-  <section class="card">
+  <section class="card container">
     <h2>Public records</h2>
     <p>
       <a href="/meetings">Minutes and resolutions</a> and{" "}
@@ -66,9 +66,9 @@ const news = (await getCollection("news"))
   </section>
 
   <h2>Latest news</h2>
-  <ul class="news-list">
+  <ul class="news-list latest-news-list">
     {news.map((n) => (
-      <li class="card">
+      <li class="card container">
         <a href={`/news/${n.id}`}>
           <strong>{n.data.title}</strong>
         </a>
@@ -82,4 +82,9 @@ const news = (await getCollection("news"))
       </li>
     ))}
   </ul>
+  <p>
+    <a class="button" href="/news">
+      View All News
+    </a>
+  </p>
 </Base>
